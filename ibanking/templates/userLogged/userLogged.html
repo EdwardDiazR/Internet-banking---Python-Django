@@ -1,0 +1,73 @@
+{%load static%} 
+{%load humanize%}
+
+<link rel="stylesheet" href="{% static 'userLogged/userLogged.css' %}" />
+{%block content%}
+<nav class="user-page-nav">
+  <h3>Django Banking</h3>
+  <div>
+    <ul>
+      <li></li>
+    </ul>
+  </div>
+  <div class="user-control">
+    <div>
+      <span>{{user}}</span>
+    </div>
+    <div class="logout-btn">
+      <button><a href="/logout/">Logout</a></button>
+    </div>
+  </div>
+</nav>
+<section class="main-info">
+  <section class="menu">
+    <ul class="menu-items">
+      <li><a href="{{user}}/crearCuenta">Solicitar cuenta</a></li>
+      <li>
+        <a href="{{user}}/transferirAmiscuentas"
+          >Transferir entre mis cuentas</a
+        >
+      </li>
+      <li>Beneficiarios</li>
+    </ul>
+  </section>
+  <section class="products-section">
+    <section class="welcome-header">
+      <h2>Bienvenido {{usuario.user_name}}</h2>
+      <p>{{date}}</p>
+    </section>
+
+    {% if accounts %}
+    <section>
+      <span><strong>Cuentas Ahorro/Corriente</strong></span>
+    </section>
+    <ul class="products-list">
+      {%for account in accounts%}
+      <li class="product-card">
+        <div class="account-info">
+          <span>Cta. {{account.cta_type}} / {{account.cta_number}}</span>
+        </div>
+        <div class="account-balance">
+          <span>
+            <strong>Balance:</strong>
+            {%if account.cta_moneda == "RD"%}
+             RD${{ account.cta_balance }}
+            {%endif%} 
+            {%if account.cta_moneda == "USD"%}
+            USD${{account.cta_balance }} 
+            {%endif%} 
+            {%if account.cta_moneda == "EUR"%} EUR{{ account.cta_balance }} 
+            {%endif%}
+          </span>
+        </div>
+        <a href="{{user}}/deposito/{{account.cta_number}}">Depositar</a>
+      </li>
+      {%endfor%}
+    </ul>
+    {%else%}
+    <p>No tienes productos</p>
+    <button><a href="{{user}}/crearCuenta">Solicita tu nueva cuenta</a></button>
+    {%endif%}
+  </section>
+</section>
+{%endblock%}

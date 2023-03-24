@@ -1,0 +1,40 @@
+{%block content%}
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'transferirEntreMisCuentas/transferEntreMisCuentas.css' %}" />
+
+<div class="container">
+  <div class="transfer-form">
+    <h1>Transferir entre mis cuentas</h1>
+    <form action="" method="POST" class="formulario" onchange="alerr()">
+      {%csrf_token%} Desde cuenta:
+      <select name="from_account" id="f" >
+        {%for account in accounts%}
+        <option value="{{account.cta_number}}"  >
+          <span>{{account.cta_number}}</span>/
+          <span>
+          {{account.cta_moneda}}$:{{account.cta_balance}}</span>
+        </option>
+        {%endfor%}
+      </select>
+
+      Hasta cuenta:
+      <select name="to_account" id="to-account">
+        {%for account in accounts%}
+        <option value="{{account.cta_number}}">
+          {{account.cta_number}}/
+          {{account.cta_moneda}}$:{{account.cta_balance}}
+        </option>
+        {%endfor%}
+      </select>
+      Monto:<input type="number" name="transfer_amount" />
+      {{error}}
+      <div>
+        <button type="submit" name="transferir">Transferir</button>
+        <button><a href="/userLogged/{{user}}">Cancelar</a></button> 
+      </div>
+    </form>
+  </div>
+</div>
+
+{%endblock%}

@@ -1,0 +1,63 @@
+{% extends 'base/base.html' %} {%block content%}
+
+<nav><h1 class="hea">Control de cheques bancarios</h1></nav>
+<div class="block-container">
+  <div class="create-ck__container">
+    <form action="/ck" method="POST" class="create-ck__form">
+      {%csrf_token%}
+      <label class="form-label">
+        <span>No. cheque:</span
+        ><input type="number" name="ck_numero" required />
+      </label>
+
+      <label class="form-label">
+        <span>Monto de cheque:</span>
+        <input type="number" name="ck_monto" required />
+      </label>
+
+      <label class="form-label">
+        <span>Beneficiario:</span> <input type="text" name="ck_beneficiario" />
+      </label>
+
+      <label class="form-label">
+        <span>Remitente:</span> <input type="text" name="ck_remitente" />
+      </label>
+
+      <label class="form-label">
+        <span>Descripcion:</span> <input type="text" name="ck_descripcion" />
+      </label>
+      
+      <button class="create-ck__btn" type="submit">Ok</button>
+      {{error}}
+    </form>
+  </div>
+
+  <div class="ck-list">
+    <h1>Cheques emitidos</h1>
+    {% for ck in ckd%}
+
+    <div
+      class="ck-card__{% if ck.ck_status %}pagado {% else %}no-pagado{% endif %}"
+    >
+      <div>No. cheque: {{ck.ck_number}}</div>
+      <div>RD$: {{ck.ck_amount}}</div>
+      <div>Desc: {{ck.ck_descripcion}}</div>
+      <div>Remitente: {{ck.ck_remitente}}</div>
+      <div>Beneficiario: {{ck.ck_beneficiario}}</div>
+      <div>Fecha: {{ck.ck_date}}</div>
+      <div>{% if ck.ck_status%} Pagado {%else%} No pagado {%endif%}</div>
+
+      <div>
+        <form action="/paycheck/{{ck.ck_number}}/" method="POST">
+          {%csrf_token%}
+
+          <button type="submit" class="pay-ck__btn">Pagar cheque</button>
+        </form>
+      </div>
+    </div>
+
+    {%endfor%}
+  </div>
+</div>
+  {%endblock%}
+

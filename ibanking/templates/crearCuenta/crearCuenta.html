@@ -1,0 +1,25 @@
+{%load static%}
+{%block content%}
+
+
+
+<form action="" method="POST">
+    {% csrf_token %}
+
+    <span>
+        Moneda: 
+        <select name="cta_moneda">
+            <option>RD</option>
+            <option >USD</option>
+            <option>EUR</option>
+        </select>
+    </span>
+    <span>Tipo de cuenta 
+        <select name="cta_type" id="cta_type">
+            <option>Ahorro</option>
+            <option>Corriente</option>
+    </select></span>
+    <button type="submit">Crear</button>
+</form>
+
+{%endblock%}

@@ -1,0 +1,95 @@
+
+body{
+    padding: 0;
+    margin: 0;
+    background: #FF8008;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #FFC837, #FF8008);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+}
+
+.user-page-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 2rem;
+    margin: 0;
+    background-color: white;
+    height: 3.5rem;
+}
+
+.user-page-nav ul{
+
+    list-style: none;
+}
+
+.logout-btn button{
+    background-color: red;
+}
+
+.user-control{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-logout{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    
+}
+
+.main-info{
+    height: 100%;
+    display: flex;
+    flex-direction: row;
+    font-size: 1.5rem;
+}
+.menu{
+    width: 20%;
+    height: 100%;
+    background-color: white;
+    margin-right: 5rem;
+    overflow: hidden;
+
+}
+
+.products-section{
+    display: flex;
+    width: 70%;
+    flex-direction: column;
+    margin-right: 5rem;
+    color: white;
+}
+
+.welcome-header{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    font-style: italic;
+}
+
+.products-list{
+    padding: 0;
+    margin: 0;
+}
+
+.product-card{
+    background-color: white;
+    color: black;
+    max-height: 100%;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    list-style: none;
+    margin: 10px 0px;
+    padding: 10px;
+    border: 0.5px solid rgb(240, 164, 41);
+}
+
+.product-section ul{
+    margin :0;
+    padding: 0;
+}

@@ -1,0 +1,35 @@
+
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="{% static 'index/index.css' %}">
+    <link rel="stylesheet" href="{% static 'cuentas/cuentas.css' %}">
+</head>
+<body>
+    <nav class="index-nav">
+        <section>
+            <h1>Banco Django</h1>
+        </section>
+        <section>
+            <ul>
+                <li><a href="/ck">Cheques bancarios</a></li>
+                <li><a href="/cuentas">Cuentas</a></li>
+                <li><a href="/login">Login</a></li>
+                <li><a href="/signup">Signup</a></li>
+            
+            </ul>
+        </section>
+    </nav>
+    
+
+    {% block content%}
+    
+    {%endblock%}
+    
+</body>
+</html>

@@ -1,0 +1,52 @@
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'signup/signup.css' %}">
+
+
+{%block content%}
+
+   
+  <div class="signup-container">
+    {{error}}
+    <form class="signup-form" action="/signup" method="POST" style="display: flex;
+    flex-direction: column;">
+        {% csrf_token %}
+        <h1>Signup</h1>
+        
+        <label>
+            
+            <input type="text" name="username" placeholder="Usuario">{{userTaken}}
+            
+        </label>
+        <label>
+            <input type="number" name="ID" placeholder="Identificacion personal">{{idExist}}
+            
+        </label>
+        <label>
+            <input type="text" name="name" placeholder="Nombre">
+            
+        </label>
+        <label>
+            <input type="text" name="last_name" placeholder="Apellido" >
+            
+        </label>
+        <label>
+            <input type="email" name="email" placeholder="E-mail" >{{emailTaken}}
+            
+        </label>
+        <label>
+            
+            <input type="password" name="password1" placeholder="Create password:">
+        </label>
+        <label>
+            
+            <input type="password" name="password2" placeholder="Confirm password:">
+        </label>
+
+
+        <button type="submit">Registrarme</button>
+        <a href="/login">¿Ya tienes una cuenta?</a>
+    </form>
+
+</div>
+ {%endblock%}

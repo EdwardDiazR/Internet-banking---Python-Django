@@ -1,0 +1,52 @@
+:root{
+    --acc-font-size: 1.7rem;
+    --acc-font-family: monospace;
+}
+
+.account-list{
+    display: flex;
+    flex-direction: column;
+    padding: 5px 5px;
+    border: 1px solid black;
+    justify-content: center;
+    align-items: center;
+
+}
+
+
+.account-info {
+    font-family: var(--acc-font-family);
+    font-size: var(--acc-font-size);
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    justify-content: space-between;
+    border: 1px solid black;
+    height: 5rem;
+    width: 90%;
+    margin: 5px;
+    padding: 10px;
+}
+
+.account-info span{
+    margin: 0px 10px;
+}
+
+.deposit-btn{
+    font-family: var(--acc-font-family);
+    font-size: var(--acc-font-size);
+    background-color: rgb(3, 56, 204);
+    border: none;
+    display: flex;
+    align-items: center;
+
+}
+
+.deposit-btn a{
+    color: white;
+    text-decoration: none;  
+}
+
+.deposit-btn :hover{
+    background-color: white;
+}

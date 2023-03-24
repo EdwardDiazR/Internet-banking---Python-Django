@@ -1,0 +1,17 @@
+{%extends 'base/base.html' %}
+
+{%block content %}
+<h1>Cuentas</h1>
+
+<ul class="account-list">
+    {% for cta in cuentas %}
+    
+        <li class="account-info">
+            <span>No. Cuenta: <strong>{{cta.cta_number}}</strong></span>
+            <span>Nombre: <strong>{{cta.cta_name}}</strong></span>
+            <span>Balance: <strong>{{cta.cta_balance}}</strong></span>
+            <button type="submit" class="deposit-btn"><a href="cuentas/deposito/{{cta.cta_number}}">Depositar</a></button>
+        </li>
+    {%endfor%}
+</ul>
+{%endblock%}

@@ -1,0 +1,23 @@
+{%load static%}
+
+<link rel="stylesheet" href="{% static 'login/login.css' %}">
+
+{%block content%}
+<div class="login-container">
+
+  <form class="login-form" action="/login/" method="POST">
+    {%csrf_token%}
+    <h1>Iniciar sesion</h1>
+    <label>
+      <input type="text" name="username" placeholder="Usuario" />
+    </label>
+    <label>
+      <input type="password" name="password1" placeholder="Contraseña" />
+    </label>
+    <button type="submit">Iniciar sesion</button>
+    <a href="/signup">¿Aun no tienes tu cuenta?</a>
+    {{error}}
+  </form>
+</div>
+
+{%endblock%}
