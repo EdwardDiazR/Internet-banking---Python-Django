@@ -33,7 +33,6 @@ def login(request):
         print(request.POST, enteredPassword)
 
         if user is not None:
-
             auth_login(request, user)
             return redirect(f"/userLogged/{user}")
         else:
@@ -47,19 +46,20 @@ def login(request):
 
 @login_required
 def userLogged(request, user):
-
-    usuario = Usuario.objects.get(username=user)
-    userC = Usuario.objects.get(username=user)
-    accounts = cuenta.objects.filter(cta_owner=userC.userCIF)
-    cuentasTerceros= cuenta.objects.filter(~Q(cta_owner=userC.userCIF))
-    print(cuenta.objects.filter(cta_owner=userC.userCIF))
-    
-    return render(request, 'userLogged/userLogged.html', {
-        "usuario": usuario,
-        "user": user,
-        "accounts": accounts,
-        "date": now
-    })
+    print (user)
+    if Usuario.objects.filter(username=user).exists():
+        userC = Usuario.objects.get(username=user)
+        accounts = cuenta.objects.filter(cta_owner=userC.userCIF)
+        cuentasTerceros= cuenta.objects.filter(~Q(cta_owner=userC.userCIF))
+        print(cuenta.objects.filter(cta_owner=userC.userCIF))
+        
+        return render(request, 'userLogged/userLogged.html', {
+            "user": user,
+            "accounts": accounts,
+            "date": now
+        })
+    else:
+        return HttpResponse("noexiste")
 
 
 @login_required
