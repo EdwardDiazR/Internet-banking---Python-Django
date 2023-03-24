@@ -9,7 +9,7 @@ print(User.last_login)
 # Create your models here.
 
 class Usuario(models.Model):
-    userCIF = models.IntegerField(primary_key=True, unique=True,blank=False,max_length=11)
+    userCIF = models.IntegerField(primary_key=True, unique=True,blank=False)
     username = models.CharField(max_length=100,unique=True)
     user_name= models.CharField(max_length=100,default="",blank=False)
     user_lastName= models.CharField(max_length=100 ,default="",blank=False)

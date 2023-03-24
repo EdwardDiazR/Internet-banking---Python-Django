@@ -33,6 +33,7 @@ def login(request):
         print(request.POST, enteredPassword)
 
         if user is not None:
+
             auth_login(request, user)
             return redirect(f"/userLogged/{user}")
         else:
@@ -46,20 +47,19 @@ def login(request):
 
 @login_required
 def userLogged(request, user):
-    print (user)
-    if Usuario.objects.filter(username=user).exists():
-        userC = Usuario.objects.get(username=user)
-        accounts = cuenta.objects.filter(cta_owner=userC.userCIF)
-        cuentasTerceros= cuenta.objects.filter(~Q(cta_owner=userC.userCIF))
-        print(cuenta.objects.filter(cta_owner=userC.userCIF))
-        
-        return render(request, 'userLogged/userLogged.html', {
-            "user": user,
-            "accounts": accounts,
-            "date": now
-        })
-    else:
-        return HttpResponse("noexiste")
+
+    usuario = Usuario.objects.get(username=user)
+    userC = Usuario.objects.get(username=user)
+    accounts = cuenta.objects.filter(cta_owner=userC.userCIF)
+    cuentasTerceros= cuenta.objects.filter(~Q(cta_owner=userC.userCIF))
+    print(cuenta.objects.filter(cta_owner=userC.userCIF))
+    
+    return render(request, 'userLogged/userLogged.html', {
+        "usuario": usuario,
+        "user": user,
+        "accounts": accounts,
+        "date": now
+    })
 
 
 @login_required
@@ -92,6 +92,9 @@ def signup(request):
                     "idExist": "ID ya esta asociado a otro usuario"
                 })
             else:
+                user = User.objects.create_user(
+                    username=request.POST['username'], password=request.POST['password1'])
+                user.save()
 
                 new_usuario = Usuario.objects.create(
                     username=request.POST['username'],
@@ -109,7 +112,6 @@ def signup(request):
             return render(request, "signup/signup.html", {
                 "error": "passwords do not match"
             })
-
 
 
 
