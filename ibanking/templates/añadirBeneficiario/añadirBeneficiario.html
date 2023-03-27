@@ -1,0 +1,18 @@
+{%block content%}
+<form action="" method="GET">
+  <input type="number" name="NumeroCuenta" value="{{ request.GET.NumeroCuenta }}" required />
+  <button type="submit">Buscar</button>
+</form>
+
+<form action="" method="POST">
+  {% csrf_token %} 
+  {%for c in cuenta%} 
+ 
+    <span>{{c.cta_number}} / {{c.cta_name}} {{c.cta_lastName}}</span>
+    <button type="submit">Añadir</button>
+    {{error}}
+
+  {%endfor%}
+</form>
+
+{%endblock%}

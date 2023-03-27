@@ -8,15 +8,12 @@
   <form class="login-form" action="/login/" method="POST">
     {%csrf_token%}
     <h1>Iniciar sesion</h1>
-    <label>
-      <input type="text" name="username" placeholder="Usuario" />
-    </label>
-    <label>
-      <input type="password" name="password1" placeholder="Contraseña" />
-    </label>
-    <button type="submit">Iniciar sesion</button>
-    <a href="/signup">¿Aun no tienes tu cuenta?</a>
-    {{error}}
+   
+      {{LForm}}
+    
+      {{error}}
+      <button type="submit">Enviar</button>
+      <a href="/signup">¿Aun no tienes tu cuenta, ¡Registrate!?
   </form>
 </div>
 

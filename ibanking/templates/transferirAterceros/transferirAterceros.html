@@ -1,0 +1,22 @@
+{%block content%}
+<form action="" method="POST" class="">
+    {%csrf_token%}
+From: <select name="FromAccount">
+    {%for myAccount in myAccounts%}
+   
+    <option value={{myAccount.cta_number}}>{{myAccount.cta_number}} / {{myAccount.cta_moneda}}$ {{myAccount.cta_balance}}</option>
+    {%endfor%}
+</select>
+
+To: 
+<select name="ToAccount">
+    {%for myBeneficiario in misBeneficiarios%}
+        <option value={{myBeneficiario.benef_number}}>{{myBeneficiario.benef_number}} / {{myBeneficiario.benef_name}} {{myAccount.cta_moneda}}$ </option>
+    {%endfor%}
+</select>
+
+<input type="number" name="transferAmount" value="{{ request.POST.transferAmount }}">
+
+<button type="submit">Trasnferir</button>
+</form>
+{%endblock%}

@@ -22,13 +22,14 @@
 <section class="main-info">
   <section class="menu">
     <ul class="menu-items">
-      <li><a href="{{user}}/crearCuenta">Solicitar cuenta</a></li>
+      <li><a href="crearCuenta">Solicitar cuenta</a></li>
       <li>
-        <a href="{{user}}/transferirAmiscuentas"
-          >Transferir entre mis cuentas</a
-        >
+        <a href="transferirAmiscuentas">Transferir entre mis cuentas</a>
       </li>
-      <li>Beneficiarios</li>
+      <li>
+        <a href="transferirAterceros">Transferir a terceros</a>
+      </li>
+      <li><a href="beneficiarios">Beneficiarios</a></li>
     </ul>
   </section>
   <section class="products-section">
@@ -60,13 +61,13 @@
             {%endif%}
           </span>
         </div>
-        <a href="{{user}}/deposito/{{account.cta_number}}">Depositar</a>
+        <a href="deposito/{{account.cta_number}}">Depositar</a>
       </li>
       {%endfor%}
     </ul>
     {%else%}
     <p>No tienes productos</p>
-    <button><a href="{{user}}/crearCuenta">Solicita tu nueva cuenta</a></button>
+    <button><a href="crearCuenta">Solicita tu nueva cuenta</a></button>
     {%endif%}
   </section>
 </section>

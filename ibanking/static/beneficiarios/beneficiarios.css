@@ -1,0 +1,23 @@
+.beneficiario-list{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    list-style: none;
+    margin: 0  ;
+    padding: 1rem;
+}
+
+.beneficiario-card{
+    display: flex;
+    width: 100%;
+    height: 3rem;
+    align-items: center;
+    justify-content: space-between;
+    list-style: none;
+    margin: 0.4rem;
+    padding: 10px;
+    border: 1px solid;
+    font-size: 2rem;
+}
+

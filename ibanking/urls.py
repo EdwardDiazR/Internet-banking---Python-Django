@@ -12,8 +12,11 @@ urlpatterns=[
     path("cuentas",views.cuentas,name="cuentas"),
     path("userLogged/<str:user>/deposito/<int:cta_number>",views.deposito,name="deposito"),
     path("userLogged/<str:user>/deposito/<int:cta_number>/depositar",views.depositar,name="depositar"),
-    path("userLogged/<str:user>", views.userLogged,name="userLogged"),
+    path("userLogged/<str:user>/", views.userLogged,name="userLogged"),
     path("logout/",views.signout,name="logout"),
     path("userLogged/<str:user>/crearCuenta/",views.crearCuenta,name="crearCuenta"),
-    path("userLogged/<str:user>/transferirAmiscuentas/",views.transferirEntreMisCuentas,name="transferirEntreMisCuentas")
+    path("userLogged/<str:user>/transferirAmiscuentas/",views.transferirEntreMisCuentas,name="transferirEntreMisCuentas"),
+    path("userLogged/<str:user>/transferirAterceros/",views.transferirAterceros,name="transferirAterceros"),
+    path("userLogged/<str:user>/beneficiarios/",views.beneficiarios,name="beneficiarios"),
+    path("userLogged/<str:user>/beneficiarios/añadir",views.añadirBeneficiario,name="añadirBeneficiarios")
 ]

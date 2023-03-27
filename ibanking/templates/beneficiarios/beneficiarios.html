@@ -1,0 +1,19 @@
+
+
+{%load static%}
+
+
+
+{%block content%}
+<link rel="stylesheet" href="{% static 'beneficiarios/beneficiarios.css' %}">
+<h1>Beneficiarios</h1>
+<a href="añadir">Añadir nuevo beneficiario</a>
+<ul class="beneficiario-list">
+{%for beneficiario in beneficiarios%}
+<li class="beneficiario-card">
+    <span>{{beneficiario.benef_name}} / {{beneficiario.benef_number}}</span>
+    <button>Transferir</button>
+</li>
+{%endfor%}
+</ul>
+{%endblock%}

@@ -30,9 +30,14 @@ body{
 }
 
 .login-form label{
-    height: 3rem;
-    width: 20rem;
-    margin: 1rem;
+        /* height: 3rem; */
+        width: 100%;
+        margin: 0;
+        font-size: 40px;
+        display: flex;
+        justify-content: flex-start;
+        align-items: flex-start;
+
     
 }
 
