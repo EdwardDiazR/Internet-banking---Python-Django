@@ -1,16 +1,66 @@
+
+*{
+    font-size: 1.25rem;
+}
+
+body{
+      
+    margin: 0;
+    padding: 0;
+    background: #00c6ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      
+}
+
+.container{    
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+
+.beneficiarios-nav{
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0 1rem;
+}
+
+.beneficiarios-nav button{
+    background-color: red;
+}
+
+
 .beneficiario-list{
     display: flex;
     flex-direction: column;
     justify-content: center;
     align-items: center;
     list-style: none;
-    margin: 0  ;
+    margin-bottom: 2rem;
     padding: 1rem;
+    background-color: white;
+    width: 50%;
+    border-radius: 0.3rem;
+    padding: 2rem;
+}
+
+.add-btn {
+    background-color: rgb(13, 193, 46);
+    border: none;
+    border-radius: 0.4rem;
+    color: white;
+    padding: 0.4rem;
+    width: max-content;
+    font-size: 3.5vmin;
+    
 }
 
 .beneficiario-card{
     display: flex;
-    width: 100%;
+    min-width: 100%;
+    max-width: max-content;
     height: 3rem;
     align-items: center;
     justify-content: space-between;
@@ -21,3 +71,24 @@
     font-size: 2rem;
 }
 
+
+.transferir-btn{
+    
+}
+
+.transferir-btn {
+    background-color: rgb(255, 128, 0);
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+
+}
+
+.eliminar-btn {
+    background-color: red;
+    color: white;
+    border: none;
+    border-radius: 0.4rem;
+    padding: 0.2rem;
+}

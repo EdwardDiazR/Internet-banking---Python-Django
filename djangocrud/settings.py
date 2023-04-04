@@ -78,8 +78,12 @@ WSGI_APPLICATION = 'djangocrud.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'ibanking',
+        'USER':'root',
+        'PASSWORD':'admin',
+        'HOST':'localhost',
+        'PORT':'3306'
     }
 }
 
@@ -119,9 +123,9 @@ USE_TZ = False
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/4.1/howto/static-files/
 
-STATIC_ROOT = ''
+STATIC_ROOT = '/ibanking/static/'
 
-STATIC_URL = '/static/'
+STATIC_URL = '/ibanking/static/'
 
 LOGIN_URL ='/login/'
 

@@ -1,21 +1,38 @@
 
+:root{
+    --blueGradient: linear-gradient(90deg, rgba(1,171,106,1) 0%, rgba(9,121,120,1) 48%, rgba(0,212,255,1) 100%);
+}
+
+
+*{
+    font-size: 1.25rem;
+}
+
 body{
     padding: 0;
     margin: 0;
-    background: #FF8008;  /* fallback for old browsers */
-    background: -webkit-linear-gradient(to right, #FFC837, #FF8008);  /* Chrome 10-25, Safari 5.1-6 */
-    background: linear-gradient(to right, #FFC837, #FF8008); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */    
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+
+    background: #00c6ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+      
 }
 
 .user-page-nav{
     display: flex;
     justify-content: space-between;
     align-items: center;
-    font-size: 2rem;
+
     margin: 0;
     background-color: white;
     height: 3.5rem;
+    padding: 0 1rem;
 }
+
+
 
 .user-page-nav ul{
 
@@ -23,7 +40,19 @@ body{
 }
 
 .logout-btn button{
-    background-color: red;
+    border: none;
+    border-radius: 0.3rem;
+    font-size: 1rem;
+    margin: 0 0 0 1rem;
+    background: #00c6ff;  /* fallback for old browsers */
+    background: -webkit-linear-gradient(to right, #0072ff, #00c6ff);  /* Chrome 10-25, Safari 5.1-6 */
+    background: linear-gradient(to right, #0072ff, #00c6ff); /* W3C, IE 10+/ Edge, Firefox 16+, Chrome 26+, Opera 12+, Safari 7+ */
+    
+}
+.logout-btn a{
+    text-decoration: none;
+    font-size: 1rem;
+    color: white;
 }
 
 .user-control{
@@ -41,18 +70,52 @@ body{
 }
 
 .main-info{
-    height: 100%;
     display: flex;
     flex-direction: row;
     font-size: 1.5rem;
+    flex: 1;
 }
 .menu{
-    width: 20%;
-    height: 100%;
+    width: 22%;
     background-color: white;
     margin-right: 5rem;
-    overflow: hidden;
+  
+    border-top: 1px solid;
+}
 
+.menu-items {
+    list-style: none;
+    padding: 0;
+    font-size: 1.5rem;
+}
+
+.menu-items li{
+    margin: 0.5rem;
+    border: 1px solid;
+    display: flex;
+    justify-content: flex-start;
+    padding: 0rem 0.3rem;
+    flex-wrap: wrap;
+    background: linear-gradient(to right,#0072ff, #00c6ff 50%, white 50%);
+    background-size: 200% 100%;
+    background-position: right bottom;
+    transition: all .194s ease-out;
+}
+
+.menu-items li:hover{
+    background-position: left bottom;
+    color:white;
+}
+
+.menu-items a{
+    text-decoration: none;
+    color: black;
+
+}
+
+.menu-items a:hover{
+    text-decoration: none;
+    color: white;
 }
 
 .products-section{

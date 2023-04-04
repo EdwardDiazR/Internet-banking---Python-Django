@@ -2,6 +2,9 @@ from django.db import models
 from django.contrib.auth import get_user_model
 import datetime
 import uuid
+from django import forms
+from django.contrib.auth.hashers import make_password,check_password
+from django.contrib.auth.admin import UserAdmin
 
 User = get_user_model()
 print(User.last_login)
@@ -9,17 +12,19 @@ print(User.last_login)
 # Create your models here.
 
 class Usuario(models.Model):
-    userCIF = models.IntegerField(primary_key=True, unique=True,blank=False)
+    userCIF = models.BigIntegerField(primary_key=True, unique=True,blank=False)
     username = models.CharField(max_length=100,unique=True)
     user_name= models.CharField(max_length=100,default="",blank=False)
     user_lastName= models.CharField(max_length=100 ,default="",blank=False)
     user_email= models.EmailField(max_length=100,blank=True)
-    user_password= models.CharField(max_length=100)
+    user_password= models.CharField(max_length=100,default="")
     user_phone=models.CharField(max_length=12)
     user_role=models.CharField(max_length=100)
+    user_created_at = models.DateTimeField(auto_now_add=True)
 
     def __str__(self):
         return self.username
+
 
 class cuenta(models.Model):
     cta_number =  models.AutoField(auto_created = True,
@@ -65,9 +70,6 @@ class cuentas_contables(models.Model):
     def __str__(self):
         return self.cc_name
     
-
-  
-    
-    
+   
 
     

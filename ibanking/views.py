@@ -10,9 +10,12 @@ from django.db.models import F
 import uuid
 from django.db.models import Q
 from .forms import SignUpForm, LoginForm
-from django.contrib.auth.hashers import make_password
+from django.contrib.auth.hashers import make_password,check_password
+from django.core.exceptions import ObjectDoesNotExist
 
 # Create your views here.
+
+
 
 now = datetime.date.today()
 print(now)
@@ -59,6 +62,9 @@ def userLogged(request, user):
     userC = Usuario.objects.get(username=user)
     accounts = cuenta.objects.filter(cta_owner=userC.userCIF)
     print(cuenta.objects.filter(cta_owner=userC.userCIF))
+    for p in Usuario.objects.raw('SELECT userCIF FROM ibanking.ibanking_usuario WHERE username="adrian1"'):
+        print(p)
+
 
     return render(request, 'userLogged/userLogged.html', {
         "usuario": usuario,
@@ -77,21 +83,26 @@ def signout(request):
 def signup(request):
     logout(request)
     if request.method == "GET":
-        print("enviando datos")
         return render(request, "signup/signup.html", {
             "form": SignUpForm,
         })
-    else:
-
+    elif request.method == "POST":
         h = SignUpForm(request.POST)
-
-        if h.is_valid():
+        if h.is_valid(): 
             user = User.objects.create_user(
-                username=request.POST["username"], password=request.POST["user_password"])
+                username=h.cleaned_data["username"])
+            user.password = make_password(h.cleaned_data['user_password'])
+            usuario = Usuario.objects.create(
+                userCIF = h.cleaned_data["userCIF"],
+                username = h.cleaned_data["username"].lower(),
+                user_name = h.cleaned_data["user_name"],
+                user_lastName = h.cleaned_data["user_lastName"],
+                user_email=h.cleaned_data["user_email"],
+                user_password = user.password,
+                user_phone =h.cleaned_data["user_phone"]
+            )
+            usuario.save()
             user.save()
-            make_password(h.cleaned_data["user_password"])
-            h.save()
-            print(request.POST)
             return redirect("login")
         else:
             if Usuario.objects.filter(username=request.POST["username"]).exists():
@@ -104,6 +115,11 @@ def signup(request):
                     "error": "contraseñas no coinciden",
                     "form": SignUpForm
                 })
+            else:
+                print(h)
+                print(h.is_valid)
+                print(h.is_valid())
+                return HttpResponse("paso algo")
 
 
 @login_required
@@ -210,7 +226,7 @@ def beneficiarios(request, user):
             "beneficiarios": misBeneficiarios
         })
 
-
+@login_required
 def añadirBeneficiario(request, user):
         busqueda = request.GET.get("NumeroCuenta")
         cta = cuenta.objects.filter(cta_number=busqueda)
@@ -218,14 +234,19 @@ def añadirBeneficiario(request, user):
         print(Beneficiario.objects.filter(benef_owner=user))
         if request.method=="POST":
                 if Beneficiario.objects.filter(benef_number=busqueda).exists():
-                    return HttpResponse("existe")
+                    return render(request,"añadirBeneficiario/añadirBeneficiario.html",{
+                    "cuenta":cta,
+                    "error":"Este beneficiario ya existe en su lista de beneficiarios"
+                })
                 else:
                     Beneficiario.objects.create(
                         benef_number=cuenta.objects.get(cta_number=cta.get().cta_number).cta_number,
                         benef_name=cuenta.objects.get(cta_number=cta.get().cta_number).cta_name ,
                         benef_owner= Usuario.objects.get(username=user).username
                 )
-                    return render(request,"beneficiarios/beneficiarios.html")
+                    return redirect(f"/userLogged/{user}/beneficiarios",{
+                        "user": user
+                    })
 
         else:
             if busqueda:
@@ -239,6 +260,9 @@ def añadirBeneficiario(request, user):
        
     # cuentasTerceros = cuenta.objects.filter(~Q(cta_owner=userC.userCIF))
 
+
+def eliminarBeneficiario():
+    pass
 
 def transferirAterceros(request, user):
     usuario = Usuario.objects.get(username=user)
